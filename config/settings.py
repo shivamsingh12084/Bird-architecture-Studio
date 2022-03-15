@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Third Pary apps
+    'crispy_forms',
     # Local
     'accounts',
     'pages',
@@ -123,6 +125,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = (str(BASE_DIR.joinpath('static')),)
+# This identifies the location of the static filed for local doevelopment
+STATIC_ROOT = str(BASE_DIR.joinpath('staticfiles'))
+# It is the location of the static files for production
+STATICFILES_FINDERS = [
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+]
+# Here Filesystemfinder looks for the static directories and
+# AppDirectories finder looks for the app lever static directories
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -135,3 +148,7 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 # Authentication 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
+
+# Crispy forms 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
